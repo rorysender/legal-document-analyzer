@@ -82,7 +82,7 @@ if uploaded_file is not None:
         else:
             st.subheader("Response")
 
-            st.write(str(response))
+        st.write(str(response))
 
         if hasattr(response, "source_nodes") and response.source_nodes:
             st.subheader("Sources")
