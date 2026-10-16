@@ -13,20 +13,24 @@ uploaded_file = st.file_uploader(
 )
 
 def build_query_engine_from_uploaded_file(uploaded_file):
-    # Create a temporary directory
-    temp_dir = tempfile.mkdtemp()
+    # Create a temporary directory that is automatically cleaned up
+    with tempfile.TemporaryDirectory() as temp_dir:
 
-    # Save uploaded file to disk so LlamaIndex can read it
-    file_path = os.path.join(temp_dir, uploaded_file.name)
-    with open(file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
+        # Save the uploaded document so LlamaIndex can read it
+        file_path = os.path.join(temp_dir, uploaded_file.name)
+        with open(file_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
 
-    # Load document(s) from that temp folder
-    documents = SimpleDirectoryReader(temp_dir).load_data()
+        # Load the document into LlamaIndex
+        documents = SimpleDirectoryReader(temp_dir).load_data()
 
-    # Build index and query engine
-    index = VectorStoreIndex.from_documents(documents)
-    return index.as_query_engine()
+        # Build a vector index for semantic document retrieval
+        index = VectorStoreIndex.from_documents(documents)
+
+        # Create the query engine before the temporary files are removed
+        query_engine = index.as_query_engine()
+
+    return query_engine
 
 query_engine = None
 
