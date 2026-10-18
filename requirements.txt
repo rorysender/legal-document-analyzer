@@ -1,4 +1,6 @@
 
 streamlit
 llama-index
+llama-index-readers-file
 pypdf
+python-docx
