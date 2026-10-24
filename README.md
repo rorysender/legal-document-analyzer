@@ -4,7 +4,7 @@ An AI-powered legal document analysis application built with **Python, Streamlit
 
 ## Overview
 
-The Legal Document Analyzer allows users to upload PDF or TXT contracts and interact with their contents through a web-based interface.
+The Legal Document Analyzer allows users to upload PDF, DOCX, or TXT contracts and interact with their contents through a web-based interface.
 
 Instead of manually searching through lengthy agreements, users can request summaries, identify contractual obligations, examine potential risks, and ask custom questions. The application retrieves relevant document passages and uses a large language model to generate context-aware responses.
 
@@ -15,10 +15,11 @@ Instead of manually searching through lengthy agreements, users can request summ
 - **LlamaIndex** — Document ingestion, vector indexing, semantic retrieval, and query orchestration
 - **OpenAI API** — Text embeddings and language-model responses
 - **PyPDF** — PDF document parsing through LlamaIndex
+- **python-docx** — Microsoft Word (.docx) document parsing and text extraction, including paragraphs and tables
 
 ## Features
 
-- Upload and analyze PDF or TXT legal agreements
+- Upload and analyze PDF, DOCX, or TXT legal agreements
 - Generate contract summaries
 - Identify potential legal and financial risks
 - Extract contractual obligations and remedies
@@ -31,7 +32,7 @@ Instead of manually searching through lengthy agreements, users can request summ
 
 The application implements a Retrieval-Augmented Generation (RAG) pipeline:
 
-1. **Document Upload:** Users upload a PDF or TXT agreement through the Streamlit interface.
+1. **Document Upload:** Users upload a PDF, DOCX, or TXT agreement through the Streamlit interface.
 2. **Document Processing:** LlamaIndex reads and parses the uploaded document.
 3. **Vector Indexing:** Document content is converted into embeddings and organized into a vector index.
 4. **Semantic Retrieval:** Relevant document passages are retrieved based on the user's question.
